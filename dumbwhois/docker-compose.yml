@@ -1,0 +1,25 @@
+# docker-compose.yml
+
+---
+services:
+  app:
+    restart: unless-stopped
+    image: docker.io/dumbwareio/dumbwhois:${DUMBWHOIS_VERSION:-latest}
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+      traefik.docker.network: traefik_default
+      traefik.enable: true
+      traefik.http.routers.dumbwhois.entrypoints: websecure
+      traefik.http.routers.dumbwhois.rule: Host(`${SERVICE_NAME_OVERRIDE:-dumbwhois}.${DOMAIN_NAME:-local}`)
+      traefik.http.routers.dumbwhois.service: dumbwhois
+      traefik.http.routers.dumbwhois.tls: true
+      traefik.http.routers.dumbwhois.tls.certresolver: ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.services.dumbwhois.loadbalancer.server.port: 3000
+    networks:
+      - traefik_default
+networks:
+  traefik_default:
+    external: true
+x-dockge:
+  urls:
+    - https://${SERVICE_NAME_OVERRIDE:-dumbwhois}.${DOMAIN_NAME:-local}
