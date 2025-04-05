@@ -94,6 +94,10 @@ Software for monitoring systems, networks, applications and websites.
   [🔗 Agent Files](beszel-agent/docker-compose.yml)
   `MIT`
   `Golang, Typescript`
+- [scrutiny](https://github.com/AnalogJ/scrutiny) - Hard Drive S.M.A.R.T Monitoring, Historical Trends & Real World Failure Thresholds
+  [🔗 Files](Stacks/scrutiny/docker-compose.yml)
+  `MIT`
+  `Docker`
 
 ### Personal Dashboards
 
