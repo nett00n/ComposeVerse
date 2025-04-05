@@ -1,0 +1,29 @@
+# docker-compose.yml
+
+---
+services:
+  app:
+    image: docker.io/noisedash/noisedash:${NOISEDASH_VERSION:-latest}
+    volumes:
+      - ${GLOBAL_DATA_FOLDER:-/Data}/noisedash/db:/var/noisedash/db
+      - ${GLOBAL_DATA_FOLDER:-/Data}/noisedash/samples:/var/noisedash/samples
+      - ${GLOBAL_STACKS_FOLDER:-/Stacks}/noisedash/config/default.json:/var/noisedash/config/default.json
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+      traefik.docker.network: traefik_default
+      traefik.enable: true
+      traefik.http.routers.noisedash.entrypoints: websecure
+      traefik.http.routers.noisedash.rule: Host(`${SERVICE_NAME_OVERRIDE:-noisedash}.${DOMAIN_NAME:-local}`)
+      traefik.http.routers.noisedash.service: noisedash
+      traefik.http.routers.noisedash.tls: true
+      traefik.http.routers.noisedash.tls.certresolver: ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.services.noisedash.loadbalancer.server.port: 1432
+    networks:
+      - traefik_default
+    restart: unless-stopped
+networks:
+  traefik_default:
+    external: true
+x-dockge:
+  urls:
+    - https://${SERVICE_NAME_OVERRIDE:-noisedash}.${DOMAIN_NAME:-local}
