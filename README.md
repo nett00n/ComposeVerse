@@ -98,6 +98,10 @@ Software for monitoring systems, networks, applications and websites.
   [🔗 Files](Stacks/scrutiny/docker-compose.yml)
   `MIT`
   `Docker`
+- [StatPing.ng](https://statping-ng.github.io/) - An easy to use Status Page for your websites and applications. Statping will automatically fetch the application and render a beautiful status page with tons of features for you to build an even better status page.
+  [🔗 Files](Stacks/statping-ng/docker-compose.yml)
+  `GPL-3.0`
+  `Docker/Go`
 
 ### Personal Dashboards
 
