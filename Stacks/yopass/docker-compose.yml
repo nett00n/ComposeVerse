@@ -1,0 +1,31 @@
+# docker-compose.yml
+
+---
+networks:
+  traefik_default:
+    external: true
+  default:
+services:
+  app:
+    image: "docker.io/jhaals/yopass:${YOPASS_VERSION:-master}"
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+      traefik.docker.network: traefik_default
+      traefik.enable: true
+      traefik.http.routers.yopass.entrypoints: websecure
+      traefik.http.routers.yopass.rule: Host(`${SERVICE_NAME_OVERRIDE:-yopass}.${DOMAIN_NAME:-local}`)
+      traefik.http.routers.yopass.service: yopass
+      traefik.http.routers.yopass.tls: true
+      traefik.http.routers.yopass.tls.certresolver: "letsencrypt-cloudflare-dns-challenge"
+      traefik.http.services.yopass.loadbalancer.server.port: 80
+    command: "--memcached=memcached:11211 --port 80"
+    networks:
+      - traefik_default
+      - default
+  memcached:
+    image: memcached
+    restart: always
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+    networks:
+      - default

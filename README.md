@@ -114,6 +114,13 @@ Related: Wikis
   `MIT`
   `Nodejs`
 
+### Pastebins
+
+- [Yopass](https://github.com/jhaals/yopass) - Secure sharing of secrets, passwords and files. ([Demo](https://yopass.se/))
+  [🔗 Files](Stacks/yopass/docker-compose.yml)
+  `Apache-2.0`
+  `Golang`
+
 ### Personal Dashboards
 
 Dashboards for accessing information and applications.
