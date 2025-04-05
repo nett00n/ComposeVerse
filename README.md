@@ -32,6 +32,10 @@ DNS servers and management tools with advertisement blocking functionality, prim
   [🔗 Files](dockge/docker-compose.yml)
   `MIT`
   `Golang, Typescript`
+- [Dozzle](https://dozzle.dev/) - Simple Container Monitoring and Logging
+  [🔗 Files](dozzle/docker-compose.yml)
+  `MIT`
+  `Golang`
 
 ## Money, Budgeting & Management
 
