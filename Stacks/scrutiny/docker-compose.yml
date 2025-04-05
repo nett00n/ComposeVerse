@@ -1,0 +1,35 @@
+# docker-compose.yml
+
+---
+services:
+  app:
+    volumes:
+      - ${GLOBAL_DATA_FOLDER:-/Data}/scrutiny/config:/opt/scrutiny/config
+      - ${GLOBAL_DATA_FOLDER:-/Data}/scrutiny/influxdb2:/opt/scrutiny/influxdb
+      - /run/udev:/run/udev:ro
+    cap_add:
+      - SYS_RAWIO
+    devices:
+      - /dev/sda
+      - /dev/sdb
+    image: ghcr.io/analogj/scrutiny:master-omnibus
+    restart: unless-stopped
+    networks:
+      - traefik_default
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+      traefik.docker.network: traefik_default
+      traefik.enable: true
+      traefik.http.routers.scrutiny.entrypoints: websecure
+      traefik.http.routers.scrutiny.rule: Host(`${SERVICE_NAME_OVERRIDE:-scrutiny}.${DOMAIN_NAME:-local}`)
+      traefik.http.routers.scrutiny.service: scrutiny
+      traefik.http.routers.scrutiny.tls: true
+      traefik.http.routers.scrutiny.tls.certresolver: ${LETSENCRYPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.services.scrutiny.loadbalancer.server.port: 8080
+      local.yacht.port.8080: WebUI
+networks:
+  traefik_default:
+    external: true
+x-dockge:
+  urls:
+    - https://${SERVICE_NAME_OVERRIDE:-scrutiny}.${DOMAIN_NAME:-local}
