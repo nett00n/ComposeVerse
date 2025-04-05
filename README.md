@@ -109,7 +109,10 @@ Related: Web Servers
 ## Recipe Management
 
 Software and tools for managing recipes.
-
+- [Recipya](https://recipes.musicavis.ca) - A clean, simple and powerful recipe manager your whole family will enjoy. ([Demo](https://recipes.musicavis.ca/guide/login), [Source Code](https://github.com/reaper47/recipya))
+  [🔗 Files](recipya/docker-compose.yml)
+  `GPL-3.0`
+  `Docker/Go`
 - [tandoor](https://tandoor.dev/) - The recipe manager that allows you to manage your ever growing collection of digital recipes.
   [🔗 Files](tandoor/docker-compose.yml)
   `“Commons Clause” License Condition v1.0`
