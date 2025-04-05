@@ -79,3 +79,14 @@ Related: Web Servers
   [🔗 Files](traefik/docker-compose.yml)
   `MIT`
   `Golang`
+
+## Software Development - Project Management
+
+Tools and software for software project management.
+
+Related: Ticketing, Task Management & To-do Lists
+
+- [Gitea](https://about.gitea.com/) - Git with a cup of tea! Painless self-hosted all-in-one software development service, including Git hosting, code review, team collaboration, package registry and CI/CD. (Demo, Source Code)
+  [🔗 Files](gitea/docker-compose.yml)
+  `MIT`
+  `Golang`
