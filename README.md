@@ -26,7 +26,7 @@ Automation software designed to reduce human intervention in processes.
 Related: Internet of Things (IoT), Software Development - Continuous Integration & Deployment
 
 - [headphones](https://github.com/rembo10/headphones) - Automated music downloader for NZB and Torrent, written in Python. It supports SABnzbd, NZBget, Transmission, µTorrent, Deluge and Blackhole.
-  [🔗 Files](headphones/docker-compose.yml)
+  [🔗 Files](Stacks/headphones/docker-compose.yml)
   `GPL-3.0`
   `Python`
 
@@ -35,29 +35,29 @@ Related: Internet of Things (IoT), Software Development - Continuous Integration
 DNS servers and management tools with advertisement blocking functionality, primarily aimed at home or small networks.
 
 - [blocky](https://github.com/0xERR0R/blocky) - Fast and lightweight DNS proxy (like Pi-hole) as ad-blocker for local network with many features.
-  [🔗 Files](blocky/docker-compose.yml)
+  [🔗 Files](Stacks/blocky/docker-compose.yml)
   `Apache-2.0`
   `Go/Docker`
 - [DumbWhois](https://github.com/DumbWareio/DumbWhoIs) - A simple web application for looking up WHOIS, IP, and ASN information using free APIs. The application automatically detects the type of query and provides formatted results with a clean, modern UI that supports both light and dark modes.
-  [🔗 Files](dumbwhois/docker-compose.yml)
+  [🔗 Files](Stacks/dumbwhois/docker-compose.yml)
   `Apache-2.0`
   `Go/Docker`
 
 ## Docker Management
 
 - [Dockge](https://github.com/louislam/dockge) - A fancy, easy-to-use and reactive self-hosted docker compose.yaml stack-oriented manager
-  [🔗 Files](dockge/docker-compose.yml)
+  [🔗 Files](Stacks/dockge/docker-compose.yml)
   `MIT`
   `Golang, Typescript`
 - [Dozzle](https://dozzle.dev/) - Simple Container Monitoring and Logging
-  [🔗 Files](dozzle/docker-compose.yml)
+  [🔗 Files](Stacks/dozzle/docker-compose.yml)
   `MIT`
   `Golang`
 
 ## File Transfer - Web-based File Managers
 
 - [filebrowser](https://github.com/filebrowser/filebrowser) - Web File Browser with a Material Design web interface.
-  [🔗 Files](filebrowser/docker-compose.yml)
+  [🔗 Files](Stacks/filebrowser/docker-compose.yml)
   `Apache-2.0`
   `Go`
 
@@ -66,11 +66,11 @@ DNS servers and management tools with advertisement blocking functionality, prim
 Software that does not fit in another section.
 
 - [morphos](https://github.com/danvergara/morphos) - Self-hosted file converter server
-  [🔗 Files](morphos/docker-compose.yml)
+  [🔗 Files](Stacks/morphos/docker-compose.yml)
   `MIT`
   `Golang`
 - [noisedash](https://github.com/kaythomas0/noisedash) - Self-hostable web tool for generating ambient noises
-  [🔗 Files](noisedash/docker-compose.yml)
+  [🔗 Files](Stacks/noisedash/docker-compose.yml)
   `MIT`
   `Golang`
 
@@ -81,7 +81,7 @@ Software and tools to help with resource and supply planning, including enterpri
 Related: Money, Budgeting & Management, Inventory Management
 
 - [ExpenseOwl](https://github.com/Tanq16/ExpenseOwl) - Extremely simple, self-hosted expense tracker with a beautiful UI.
-  [🔗 Files](ExpenseOwl/docker-compose.yml)
+  [🔗 Files](Stacks/expenseowl/docker-compose.yml)
   `MIT`
   `Golang`
 
@@ -100,7 +100,7 @@ Software for monitoring systems, networks, applications and websites.
 Dashboards for accessing information and applications.
 
 - [ryot](https://github.com/ignisda/ryot) - Platform for tracking various facets of your life - media, fitness, etc. ([Demo](https://github.com/IgnisDa/ryot?tab=readme-ov-file#-demo))
-  [🔗 Files](ryot/docker-compose.yml)
+  [🔗 Files](Stacks/ryot/docker-compose.yml)
   `GPL-3.0`
   `Docker`
 
@@ -112,7 +112,7 @@ A proxy is a server application that acts as an intermediary between a client re
 Related: Web Servers
 
 - [Traefik](https://github.com/traefik/traefik) - The Cloud Native Application Proxy.
-  [🔗 Files](traefik/docker-compose.yml)
+  [🔗 Files](Stacks/traefik/docker-compose.yml)
   `MIT`
   `Golang`
 
@@ -120,11 +120,11 @@ Related: Web Servers
 
 Software and tools for managing recipes.
 - [Recipya](https://recipes.musicavis.ca) - A clean, simple and powerful recipe manager your whole family will enjoy. ([Demo](https://recipes.musicavis.ca/guide/login), [Source Code](https://github.com/reaper47/recipya))
-  [🔗 Files](recipya/docker-compose.yml)
+  [🔗 Files](Stacks/recipya/docker-compose.yml)
   `GPL-3.0`
   `Docker/Go`
 - [tandoor](https://tandoor.dev/) - The recipe manager that allows you to manage your ever growing collection of digital recipes.
-  [🔗 Files](tandoor/docker-compose.yml)
+  [🔗 Files](Stacks/tandoor/docker-compose.yml)
   `“Commons Clause” License Condition v1.0`
   `Python`
 
@@ -135,7 +135,7 @@ Software and tools to help with resource and supply planning, including enterpri
 Related: Money, Budgeting & Management, Inventory Management
 
 - [grocy](https://grocy.info/) - ERP beyond your fridge - grocy is a web-based self-hosted groceries & household management solution for your home. (Demo, Source Code)
-  [🔗 Files](grocy/docker-compose.yml)
+  [🔗 Files](Stacks/grocy/docker-compose.yml)
   `MIT`
   `PHP`
 
@@ -145,7 +145,7 @@ Related: Money, Budgeting & Management, Inventory Management
 Software development is the process of conceiving, specifying, designing, programming, documenting, testing, and bug fixing involved in creating and maintaining applications, frameworks, or other software components.
 
 - [it-tools](https://github.com/CorentinTh/it-tools) - Collection of handy online tools for developers, with great UX.
-  [🔗 Files](it-tools/docker-compose.yml)
+  [🔗 Files](Stacks/it-tools/docker-compose.yml)
   `GPL-3.0`
   `Vue, Typescript`
 
@@ -156,6 +156,6 @@ Tools and software for software project management.
 Related: Ticketing, Task Management & To-do Lists
 
 - [Gitea](https://about.gitea.com/) - Git with a cup of tea! Painless self-hosted all-in-one software development service, including Git hosting, code review, team collaboration, package registry and CI/CD. (Demo, Source Code)
-  [🔗 Files](gitea/docker-compose.yml)
+  [🔗 Files](Stacks/gitea/docker-compose.yml)
   `MIT`
   `Golang`
