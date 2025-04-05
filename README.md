@@ -41,6 +41,13 @@ DNS servers and management tools with advertisement blocking functionality, prim
   `MIT`
   `Golang`
 
+## File Transfer - Web-based File Managers
+
+- [filebrowser](https://github.com/filebrowser/filebrowser) - Web File Browser with a Material Design web interface.
+  [🔗 Files](filebrowser/docker-compose.yml)
+  `Apache-2.0`
+  `Go`
+
 ## Money, Budgeting & Management
 
 Software and tools to help with resource and supply planning, including enterprise resource and supply planning (ERP).
