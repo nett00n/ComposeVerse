@@ -80,6 +80,17 @@ Related: Web Servers
   `MIT`
   `Golang`
 
+## Resource Planning
+
+Software and tools to help with resource and supply planning, including enterprise resource and supply planning (ERP).
+
+Related: Money, Budgeting & Management, Inventory Management
+
+- [grocy](https://grocy.info/) - ERP beyond your fridge - grocy is a web-based self-hosted groceries & household management solution for your home. (Demo, Source Code)
+  [🔗 Files](groc/docker-compose.yml)
+  `MIT`
+  `PHP`
+
 ## Software Development - Project Management
 
 Tools and software for software project management.
