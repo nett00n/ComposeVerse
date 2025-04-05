@@ -113,6 +113,16 @@ Related: Money, Budgeting & Management, Inventory Management
   `MIT`
   `PHP`
 
+## Software Development
+
+
+Software development is the process of conceiving, specifying, designing, programming, documenting, testing, and bug fixing involved in creating and maintaining applications, frameworks, or other software components.
+
+- [it-tools](https://github.com/CorentinTh/it-tools) - Collection of handy online tools for developers, with great UX.
+  [🔗 Files](it-tools/docker-compose.yml)
+  `GPL-3.0`
+  `Vue, Typescript`
+
 ## Software Development - Project Management
 
 Tools and software for software project management.

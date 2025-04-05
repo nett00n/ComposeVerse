@@ -1,0 +1,30 @@
+# docker-compose.yml
+
+---
+networks:
+  traefik_default:
+    external: true
+services:
+  app:
+    image: docker.io/corentinth/it-tools:${IT_TOOLS_VERSION:-latest}
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+      traefik.docker.network: traefik_default
+      traefik.enable: true
+      traefik.http.routers.it-tools.entrypoints: websecure
+      traefik.http.routers.it-tools.rule: Host(`${SERVICE_NAME_OVERRIDE:-it-tools}.${DOMAIN_NAME:-local}`)
+      traefik.http.routers.it-tools.service: it-tools
+      traefik.http.routers.it-tools.tls: true
+      traefik.http.routers.it-tools.tls.certresolver: ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.services.it-tools.loadbalancer.server.port: 80
+    logging:
+      driver: json-file
+      options:
+        max-file: ${LOG_ROTATION_COUNT:-3}
+        max-size: ${LOG_MAX_SIZE:-1m}
+    networks:
+      - traefik_default
+    restart: unless-stopped
+x-dockge:
+  urls:
+    - https://${SERVICE_NAME_OVERRIDE:-it-tools}.${DOMAIN_NAME:-local}
