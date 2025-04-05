@@ -2,10 +2,10 @@
 
 Here are located my attempts to deploy an kind of services.
 
-- I use [Traefik](https://doc.traefik.io/traefik/) as a reverse proxy. Sample config is located [🔗 here]()
+- I use [Traefik](https://doc.traefik.io/traefik/) as a reverse proxy. Sample config is located [🔗 here](traefik/docker-compose.yml)
 - I use [Cloudlare DNS](https://www.cloudflare.com/) and deploy it with [Terraform](https://www.terraform.io/)
 
-  AFAIK [❔]() [Desec](https://desec.io/) and [IBM NS1](https://www.ibm.com/products/ns1-connect) can be conigured with terraform too: [\[Desec terraform module\]](https://registry.terraform.io/providers/Valodim/desec/latest/docs) [\[IBM NS1 terraform module\]](https://registry.terraform.io/providers/Valodim/desec/latest/docs)
+  AFAIK [❔](https://www.wordnik.com/words/afaik) [Desec](https://desec.io/) and [IBM NS1](https://www.ibm.com/products/ns1-connect) can be conigured with terraform too: [\[Desec terraform module\]](https://registry.terraform.io/providers/Valodim/desec/latest/docs) [\[IBM NS1 terraform module\]](https://registry.terraform.io/providers/Valodim/desec/latest/docs)
 - My docker stacks directory is mounted to `/Stacks`
 - My data directory is mounted to `/Data`
 - I use watchtower to update containers, which are safe to update
@@ -19,5 +19,6 @@ Here are located my attempts to deploy an kind of services.
   ```
 
 ## Money, Budgeting & Management
+
 - [ExpenseOwl](https://github.com/Tanq16/ExpenseOwl) - Extremely simple, self-hosted expense tracker with a beautiful UI.
   [🔗 Files](ExpenseOwl/docker-compose.yml)
