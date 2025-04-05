@@ -1,0 +1,33 @@
+# docker-compose.yml
+
+---
+services:
+  app:
+    image: lscr.io/linuxserver/headphones:latest
+    environment:
+      PGID: ${PGID:-1000}
+      PUID: ${PUID:-1000}
+      TZ: ${TZ:-Etc/UTC}
+    volumes:
+      - ${GLOBAL_DATA_FOLDER:-/Data}/headphones/appdata/config:/config
+      # - /Downloads:/downloads
+      # - /Music:/music
+    restart: unless-stopped
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+      traefik.docker.network: traefik_default
+      traefik.enable: true
+      traefik.http.routers.headphones.entrypoints: websecure
+      traefik.http.routers.headphones.rule: Host(`${SERVICE_NAME_OVERRIDE:-headphones}.${DOMAIN_NAME:-local}`)
+      traefik.http.routers.headphones.service: headphones
+      traefik.http.routers.headphones.tls: true
+      traefik.http.routers.headphones.tls.certresolver: ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.services.headphones.loadbalancer.server.port: 8181
+    networks:
+      - traefik_default
+x-dockge:
+  urls:
+    - https://${SERVICE_NAME_OVERRIDE:-headphones}.${DOMAIN_NAME:-local}
+networks:
+  traefik_default:
+    external: true
