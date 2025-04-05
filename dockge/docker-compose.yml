@@ -7,7 +7,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${GLOBAL_DATA_FOLDER:-/Data}/dockge:/app/data
-      - /Stacks:/Stacks
+      - ${GLOBAL_STACKS_FOLDER:-/Stacks}:/Stacks
     networks:
       - traefik_default
     environment:
