@@ -12,7 +12,7 @@ services:
       traefik.http.routers.morphos.rule: Host(`${SERVICE_NAME_OVERRIDE:-morphos}.${DOMAIN_NAME:-local}`)
       traefik.http.routers.morphos.service: morphos
       traefik.http.routers.morphos.tls: true
-      traefik.http.routers.morphos.tls.certresolver: ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.routers.morphos.tls.certresolver: ${LETSENCRYPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
       traefik.http.services.morphos.loadbalancer.server.port: 8080
     volumes:
       - ${MORPHOS_TEMP_DIR:-/tmp/morphos}:/tmp

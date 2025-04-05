@@ -21,7 +21,7 @@ services:
       traefik.http.routers.dockge.rule: Host(`${SERVICE_NAME_OVERRIDE:-dockge}.${DOMAIN_NAME:-local}`)
       traefik.http.routers.dockge.service: dockge
       traefik.http.routers.dockge.tls: true
-      traefik.http.routers.dockge.tls.certresolver: ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.routers.dockge.tls.certresolver: ${LETSENCRYPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
       traefik.http.services.dockge.loadbalancer.server.port: 5001
 networks:
   traefik_default:

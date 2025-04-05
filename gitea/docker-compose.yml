@@ -35,7 +35,7 @@ services:
       traefik.http.routers.gitea.rule: Host(`${SERVICE_NAME_OVERRIDE:-gitea}.${DOMAIN_NAME:-local}`)
       traefik.http.routers.gitea.service: gitea
       traefik.http.routers.gitea.tls: true
-      traefik.http.routers.gitea.tls.certresolver: ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.routers.gitea.tls.certresolver: ${LETSENCRYPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
       traefik.http.services.gitea.loadbalancer.server.port: 3000
   runner:
     image: docker.io/gitea/act_runner:latest

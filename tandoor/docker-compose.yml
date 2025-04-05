@@ -64,7 +64,7 @@ services:
       traefik.http.routers.tandoor.rule: Host(`${SERVICE_NAME_OVERRIDE:-tandoor}.${DOMAIN_NAME:-local}`)
       traefik.http.routers.tandoor.service: tandoor
       traefik.http.routers.tandoor.tls: true
-      traefik.http.routers.tandoor.tls.certresolver: ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.routers.tandoor.tls.certresolver: ${LETSENCRYPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
       traefik.http.services.tandoor.loadbalancer.server.port: 80
       local.yacht.port.80: WebUI
     healthcheck:

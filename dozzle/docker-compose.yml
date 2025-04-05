@@ -15,7 +15,7 @@ services:
       traefik.http.routers.dozzle.rule: Host(`${SERVICE_NAME_OVERRIDE:-dozzle}.${DOMAIN_NAME:-local}`)
       traefik.http.routers.dozzle.service: dozzle
       traefik.http.routers.dozzle.tls: true
-      traefik.http.routers.dozzle.tls.certresolver: ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.routers.dozzle.tls.certresolver: ${LETSENCRYPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
       traefik.http.services.dozzle.loadbalancer.server.port: 8080
       local.yacht.port.8080: WebUI
     restart: unless-stopped

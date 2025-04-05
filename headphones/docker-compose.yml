@@ -21,7 +21,7 @@ services:
       traefik.http.routers.headphones.rule: Host(`${SERVICE_NAME_OVERRIDE:-headphones}.${DOMAIN_NAME:-local}`)
       traefik.http.routers.headphones.service: headphones
       traefik.http.routers.headphones.tls: true
-      traefik.http.routers.headphones.tls.certresolver: ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.routers.headphones.tls.certresolver: ${LETSENCRYPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
       traefik.http.services.headphones.loadbalancer.server.port: 8181
     networks:
       - traefik_default

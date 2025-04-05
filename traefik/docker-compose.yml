@@ -30,7 +30,7 @@ services:
       traefik.http.routers.traefik_https.rule: Host(`${SERVICE_NAME_OVERRIDE:-traefik}.${DOMAIN_NAME:-local}`)
       traefik.http.routers.traefik_https.service: api@internal
       traefik.http.routers.traefik_https.tls: true
-      traefik.http.routers.traefik_https.tls.certresolver:  ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.routers.traefik_https.tls.certresolver:  ${LETSENCRYPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
     logging:
       driver: json-file
       options:

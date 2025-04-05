@@ -13,7 +13,7 @@ services:
       traefik.http.routers.dumbwhois.rule: Host(`${SERVICE_NAME_OVERRIDE:-dumbwhois}.${DOMAIN_NAME:-local}`)
       traefik.http.routers.dumbwhois.service: dumbwhois
       traefik.http.routers.dumbwhois.tls: true
-      traefik.http.routers.dumbwhois.tls.certresolver: ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.routers.dumbwhois.tls.certresolver: ${LETSENCRYPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
       traefik.http.services.dumbwhois.loadbalancer.server.port: 3000
     networks:
       - traefik_default
