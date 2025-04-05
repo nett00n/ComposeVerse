@@ -103,6 +103,17 @@ Software for monitoring systems, networks, applications and websites.
   `GPL-3.0`
   `Docker/Go`
 
+### Note-taking & Editors
+
+[Note taking](https://en.wikipedia.org/wiki/Note-taking) editors.
+
+Related: Wikis
+
+- [Joplin](https://joplinapp.org/) - Joplin is a note taking application with Markdown editor and encryption support for mobile and desktop platforms. Runs client-side and syncs through self hosted Nextcloud or similar (alternative to Evernote).
+  [🔗 Files](Stacks/joplin-server/docker-compose.yml)
+  `MIT`
+  `Nodejs`
+
 ### Personal Dashboards
 
 Dashboards for accessing information and applications.
