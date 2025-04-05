@@ -1,0 +1,54 @@
+---
+networks:
+  default:
+  traefik_default:
+    external: true
+services:
+  app:
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      APP_BASE_URL: https://${SERVICE_NAME_OVERRIDE:-joplin}.${DOMAIN_NAME:-local}
+      APP_PORT: 22300
+      DB_CLIENT: pg
+      POSTGRES_DATABASE: joplin
+      POSTGRES_HOST: db
+      POSTGRES_PASSWORD: joplin
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: joplin
+#     image: "joplin/server:latest"
+    image: docker.io/netvpc/joplin:3
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+      traefik.docker.network: traefik_default
+      traefik.enable: true
+      traefik.http.routers.joplin.entrypoints: websecure
+      traefik.http.routers.joplin.rule: Host(`${SERVICE_NAME_OVERRIDE:-joplin}.${DOMAIN_NAME:-local}`)
+      traefik.http.routers.joplin.service: joplin
+      traefik.http.routers.joplin.tls: true
+      traefik.http.routers.joplin.tls.certresolver: ${LETSENCRYPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.services.joplin.loadbalancer.server.port: 22300
+    networks:
+      - traefik_default
+      - default
+    restart: always
+  db:
+    environment:
+      POSTGRES_DB: joplin
+      POSTGRES_PASSWORD: joplin
+      POSTGRES_USER: joplin
+    image: "postgres:13-alpine"
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+    networks:
+      - default
+    restart: always
+    volumes:
+      - ${GLOBAL_DATA_FOLDER:-/Data}/joplin/joplin-data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready
+      interval: 5s
+      timeout: 20s
