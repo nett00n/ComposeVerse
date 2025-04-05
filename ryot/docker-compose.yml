@@ -1,0 +1,43 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    volumes:
+      - ${GLOBAL_DATA_FOLDER:-/Data}/ryot/db:/var/lib/postgresql/data
+    environment:
+      TZ: ${TZ:-Etc/UTC}
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - default
+  app:
+    image: ghcr.io/ignisda/ryot:${RYOT_VERSION:-v8}
+    pull_policy: always
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Amsterdam
+      - SERVER_ADMIN_ACCESS_TOKEN=${SERVER_ADMIN_ACCESS_TOKEN:-FIXME}
+      - DATABASE_URL=postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-postgres}
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+      traefik.docker.network: traefik_default
+      traefik.enable: true
+      traefik.http.routers.ryot.entrypoints: websecure
+      traefik.http.routers.ryot.rule: Host(`${SERVICE_NAME_OVERRIDE:-ryot}.${DOMAIN_NAME:-local}`)
+      traefik.http.routers.ryot.service: ryot
+      traefik.http.routers.ryot.tls: true
+      traefik.http.routers.ryot.tls.certresolver: ${LETSENCRYPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.services.ryot.loadbalancer.server.port: 8000
+    networks:
+      - traefik_default
+      - default
+    depends_on:
+      - db
+networks:
+  traefik_default:
+    external: true
+  default: null
+x-dockge:
+  urls:
+    - https://${SERVICE_NAME_OVERRIDE:-ryot}.${DOMAIN_NAME:-local}

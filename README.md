@@ -95,6 +95,16 @@ Software for monitoring systems, networks, applications and websites.
   `MIT`
   `Golang, Typescript`
 
+### Personal Dashboards
+
+Dashboards for accessing information and applications.
+
+- [ryot](https://github.com/ignisda/ryot) - Platform for tracking various facets of your life - media, fitness, etc. ([Demo](https://github.com/IgnisDa/ryot?tab=readme-ov-file#-demo))
+  [🔗 Files](ryot/docker-compose.yml)
+  `GPL-3.0`
+  `Docker`
+
+
 ## Proxy
 
 A proxy is a server application that acts as an intermediary between a client requesting a resource and the server providing that resource. This section about forward (i.e. outgoing) proxies. For reverse proxies, see the Web Server section.
