@@ -1,0 +1,30 @@
+# docker-compose.yml
+
+services:
+  app:
+    volumes:
+      # - /Downloads/:/srv/Data/
+      - type: tmpfs
+        target: /srv/tmp
+      - ${GLOBAL_DATA_FOLDER:-/Data}/filebrowser/:/filebrowser-data/
+      - ${GLOBAL_STACKS_FOLDER:-/Data}/filebrowser/.filebrowser.json:/.filebrowser.json
+    image: docker.io/filebrowser/filebrowser
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+      traefik.docker.network: traefik_default
+      traefik.enable: true
+      traefik.http.routers.filebrowser.entrypoints: websecure
+      traefik.http.routers.filebrowser.rule: Host(`${SERVICE_NAME_OVERRIDE:-filebrowser}.${DOMAIN_NAME:-local}`)
+      traefik.http.routers.filebrowser.service: filebrowser
+      traefik.http.routers.filebrowser.tls: true
+      traefik.http.routers.filebrowser.tls.certresolver: ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.services.filebrowser.loadbalancer.server.port: 80
+    networks:
+      - traefik_default
+    restart: unless-stopped
+networks:
+  traefik_default:
+    external: true
+x-dockge:
+  urls:
+    - https://${SERVICE_NAME_OVERRIDE:-filebrowser}.${DOMAIN_NAME:-local}
