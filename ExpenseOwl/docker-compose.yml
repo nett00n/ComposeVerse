@@ -1,0 +1,28 @@
+# docker-compose.yml
+#
+
+services:
+  app:
+    image: tanq16/expenseowl:${EXPENSEOWL_VERSION:-main}
+    restart: unless-stopped
+    volumes:
+      - ${GLOBAL_DATA_FOLDER:-/Data}/expenseowl:/app/data
+    networks:
+      - traefik_default
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+      traefik.docker.network: traefik_default
+      traefik.enable: true
+      traefik.http.routers.expenseowl.entrypoints: websecure
+      traefik.http.routers.expenseowl.rule: Host(`${SERVICE_NAME_OVERRIDE:-expenseowl}.${DOMAIN_NAME:-local}`)
+      traefik.http.routers.expenseowl.service: expenseowl
+      traefik.http.routers.expenseowl.tls: true
+      traefik.http.routers.expenseowl.tls.certresolver: ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.services.expenseowl.loadbalancer.server.port: 8080
+      local.yacht.port.8080: WebUI
+networks:
+  traefik_default:
+    external: true
+x-dockge:
+  urls:
+    - https://${SERVICE_NAME_OVERRIDE:-expenseowl}.${DOMAIN_NAME:-local}
