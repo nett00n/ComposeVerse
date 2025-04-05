@@ -1,0 +1,35 @@
+# docker-compose.yml
+
+services:
+  app:
+    image: docker.io/henrygd/beszel:${BESZEL_VERSION:-0}
+    restart: unless-stopped
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    volumes:
+      - ${GLOBAL_DATA_FOLDER:-/Data}/beszel/beszel_data:/beszel_data
+    networks:
+      - traefik_default
+      - default
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+      traefik.docker.network: traefik_default
+      traefik.enable: true
+      traefik.http.routers.beszel.entrypoints: websecure
+      traefik.http.routers.beszel.rule: Host(`${SERVICE_NAME_OVERRIDE:-beszel}.${DOMAIN_NAME:-local}`)
+      traefik.http.routers.beszel.service: beszel
+      traefik.http.routers.beszel.tls: true
+      traefik.http.routers.beszel.tls.certresolver: ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.services.beszel.loadbalancer.server.port: 8090
+      local.yacht.port.8090: WebUI
+    dns:
+      - 208.67.222.222 # opendns
+      - 1.1.1.1
+      - 8.8.8.8
+      - 9.9.9.9
+networks:
+  traefik_default:
+    external: true
+x-dockge:
+  urls:
+    - https://${SERVICE_NAME_OVERRIDE:-beszel}.${DOMAIN_NAME:-local}

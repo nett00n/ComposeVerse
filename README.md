@@ -20,7 +20,10 @@ Here are located my attempts to deploy an kind of services.
 
 ## Docker Management
 
-- [Dockge](https://github.com/louislam/dockge) - A fancy, easy-to-use and reactive self-hosted docker compose.yaml stack-oriented manager `MIT` `Golang, Typescript`
+- [Dockge](https://github.com/louislam/dockge) - A fancy, easy-to-use and reactive self-hosted docker compose.yaml stack-oriented manager
+  [🔗 Files](dockge/docker-compose.yml)
+  `MIT`
+  `Golang, Typescript`
 
 ## Money, Budgeting & Management
 
@@ -29,7 +32,19 @@ Software and tools to help with resource and supply planning, including enterpri
 Related: Money, Budgeting & Management, Inventory Management
 
 - [ExpenseOwl](https://github.com/Tanq16/ExpenseOwl) - Extremely simple, self-hosted expense tracker with a beautiful UI.
-  [🔗 Files](ExpenseOwl/docker-compose.yml) `MIT` `Golang`
+  [🔗 Files](ExpenseOwl/docker-compose.yml)
+  `MIT`
+  `Golang`
+
+## Monitoring
+
+Software for monitoring systems, networks, applications and websites.
+
+- [Beszel](https://github.com/henrygd/beszel) - Lightweight server monitoring hub with historical data, docker stats, and alerts.
+  [🔗 Server Files](beszel-server/docker-compose.yml)
+  [🔗 Agent Files](beszel-agent/docker-compose.yml)
+  `MIT`
+  `Golang, Typescript`
 
 ## Proxy
 
@@ -38,4 +53,6 @@ A proxy is a server application that acts as an intermediary between a client re
 Related: Web Servers
 
 - [Traefik](https://github.com/traefik/traefik) - The Cloud Native Application Proxy.
-  [🔗 Files](traefik/docker-compose.yml) `MIT` `Golang`
+  [🔗 Files](traefik/docker-compose.yml)
+  `MIT`
+  `Golang`
