@@ -19,7 +19,6 @@ services:
       traefik.http.routers.expenseowl.tls: true
       traefik.http.routers.expenseowl.tls.certresolver: ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
       traefik.http.services.expenseowl.loadbalancer.server.port: 8080
-      local.yacht.port.8080: WebUI
 networks:
   traefik_default:
     external: true
