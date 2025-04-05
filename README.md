@@ -69,7 +69,10 @@ Software that does not fit in another section.
   [🔗 Files](morphos/docker-compose.yml)
   `MIT`
   `Golang`
-
+- [noisedash](https://github.com/kaythomas0/noisedash) - Self-hostable web tool for generating ambient noises
+  [🔗 Files](noisedash/docker-compose.yml)
+  `MIT`
+  `Golang`
 
 ## Money, Budgeting & Management
 
