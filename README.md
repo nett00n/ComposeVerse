@@ -61,6 +61,16 @@ DNS servers and management tools with advertisement blocking functionality, prim
   `Apache-2.0`
   `Go`
 
+### Miscellaneous
+
+Software that does not fit in another section.
+
+- [morphos](https://github.com/danvergara/morphos) - Self-hosted file converter server
+  [🔗 Files](morphos/docker-compose.yml)
+  `MIT`
+  `Golang`
+
+
 ## Money, Budgeting & Management
 
 Software and tools to help with resource and supply planning, including enterprise resource and supply planning (ERP).

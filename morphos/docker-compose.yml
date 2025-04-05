@@ -1,0 +1,27 @@
+# docker-compose.yml
+
+---
+services:
+  app:
+    image: ghcr.io/danvergara/morphos-server:${MORPHOS_VERSION:-latest}
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+      traefik.docker.network: traefik_default
+      traefik.enable: true
+      traefik.http.routers.morphos.entrypoints: websecure
+      traefik.http.routers.morphos.rule: Host(`${SERVICE_NAME_OVERRIDE:-morphos}.${DOMAIN_NAME:-local}`)
+      traefik.http.routers.morphos.service: morphos
+      traefik.http.routers.morphos.tls: true
+      traefik.http.routers.morphos.tls.certresolver: ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.services.morphos.loadbalancer.server.port: 8080
+    volumes:
+      - ${MORPHOS_TEMP_DIR:-/tmp/morphos}:/tmp
+    networks:
+      - traefik_default
+    restart: unless-stopped
+networks:
+  traefik_default:
+    external: true
+x-dockge:
+  urls:
+    - https://${SERVICE_NAME_OVERRIDE:-morphos}.${DOMAIN_NAME:-local}
