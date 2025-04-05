@@ -1,0 +1,53 @@
+# docker-compose.yml
+
+---
+
+services:
+  app:
+    image: docker.io/adamboutcher/statping-ng:${STATPING_NG_VERSION:-base}
+    restart: always
+    networks:
+      - traefik_default
+      - default
+    depends_on:
+      - postgres
+    volumes:
+      - ${GLOBAL_DATA_FOLDER:-/Data}/statup/app:/app
+    environment:
+      VIRTUAL_HOST: localhost
+      VIRTUAL_PORT: 80
+      DB_CONN: postgres
+      DB_HOST: postgres
+      DB_USER: ${POSTGRES_USER:-statup}
+      DB_PASS: ${POSTGRES_PASSWORD:-statup}
+      DB_DATABASE: ${POSTGRES_DB:-statup}
+      NAME: ${STATPING_NG_TITLE:-EC2 Example}
+      DESCRIPTION: ${STATPING_NG_DESCRIPTION:-This is a Statping Docker Compose instance}
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+      traefik.docker.network: traefik_default
+      traefik.enable: true
+      traefik.http.routers.statping-ng.entrypoints: websecure
+      traefik.http.routers.statping-ng.rule: Host(`${SERVICE_NAME_OVERRIDE:-statping-ng}.${DOMAIN_NAME:-local}`)
+      traefik.http.routers.statping-ng.service: statping-ng
+      traefik.http.routers.statping-ng.tls: true
+      traefik.http.routers.statping-ng.tls.certresolver: ${LETSENCRYPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.services.statping-ng.loadbalancer.server.port: 8080
+  postgres:
+    image: docker.io/library/postgres:10
+    restart: always
+    volumes:
+      - ./statup/postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-statup}
+      POSTGRES_USER: ${POSTGRES_USER:-statup}
+      POSTGRES_DB: ${POSTGRES_DB:-statup}
+    networks:
+      - default
+networks:
+  default: null
+  traefik_default:
+    external: true
+x-dockge:
+  urls:
+    - https://${SERVICE_NAME_OVERRIDE:-statping-ng}.${DOMAIN_NAME:-local}
