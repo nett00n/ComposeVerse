@@ -1,0 +1,13 @@
+services:
+  pycertifried:
+    image: docker.io/nett00n/pycertifried:latest
+    environment:
+      TimeInterval: 120 # Minutes
+      AcmePath: /letsencrypt/acme.json
+      ExportPath: /letsencrypt/export/
+      IsDaemon: true
+    volumes:
+      - ${GLOBAL_DATA_FOLDER:-/Data}/letsencrypt:/letsencrypt
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+    restart: unless-stopped

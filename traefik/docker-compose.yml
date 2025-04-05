@@ -1,0 +1,50 @@
+# docker-compose.yml
+
+services:
+  app:
+    command:
+      - --api.dashboard=true
+      - --certificatesResolvers.letsencrypt-cloudflare-dns-challenge.acme.dnschallenge.provider=cloudflare
+      - --certificatesResolvers.letsencrypt-cloudflare-dns-challenge.acme.dnschallenge=true
+      - --certificatesResolvers.letsencrypt-cloudflare-dns-challenge.acme.email=${TRAEFIK_EMAIL:-admin@local}
+      - --certificatesResolvers.letsencrypt-cloudflare-dns-challenge.acme.storage=/letsencrypt/acme.json
+      - --certificatesResolvers.letsencrypt-http-challenge.acme.email=${TRAEFIK_EMAIL:-admin@local}
+      - --certificatesResolvers.letsencrypt-http-challenge.acme.httpChallenge.entryPoint=web
+      - --certificatesResolvers.letsencrypt-http-challenge.acme.httpChallenge=true
+      - --certificatesResolvers.letsencrypt-http-challenge.acme.storage=/letsencrypt/acme.json
+      - --certificatesResolvers.letsencrypt-http-challenge.acme.tlsChallenge=true
+      - --entrypoints.web.address=:80
+      - --entrypoints.web.http.redirections.entrypoint.scheme=https
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --entrypoints.websecure.address=:443
+      - --providers.docker.exposedbydefault=false
+      - --providers.docker.network=traefik_default
+      - --providers.docker=true
+    env_file:
+      - .env
+    image: docker.io/library/traefik:${TRAEFIK_VERSION:-3.0}
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+      traefik.enable: true
+      traefik.http.routers.traefik_https.entrypoints: websecure
+      traefik.http.routers.traefik_https.rule: Host(`${SERVICE_NAME_OVERRIDE:-traefik}.${DOMAIN_NAME:-local}`)
+      traefik.http.routers.traefik_https.service: api@internal
+      traefik.http.routers.traefik_https.tls: true
+      traefik.http.routers.traefik_https.tls.certresolver:  ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+    logging:
+      driver: json-file
+      options:
+        max-file: "3"
+        max-size: 1m
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ${GLOBAL_DATA_FOLDER:-/Data}/letsencrypt:/letsencrypt
+x-dockge:
+  urls:
+    - https://${SERVICE_NAME_OVERRIDE:-traefik}.${DOMAIN_NAME:-local}
+networks: {}
