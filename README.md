@@ -10,6 +10,7 @@ Here are located my attempts to deploy an kind of services.
 - My data directory is mounted to `/Data`
 - I use watchtower to update containers, which are safe to update
 - At most cases environment must be conigured in `.env` file
+- if anything except `docker-compose*.yml`, `.env` and `README.md` located in directory - you need them in your stack folder
 - I use [dockge] on my development machine, so my compose files has this code, which renders URL to service dnamically in dockge WUI:
 
   ```yaml
@@ -79,6 +80,15 @@ Related: Web Servers
   [🔗 Files](traefik/docker-compose.yml)
   `MIT`
   `Golang`
+
+## Recipe Management
+
+Software and tools for managing recipes.
+
+- [tandoor](https://tandoor.dev/) - The recipe manager that allows you to manage your ever growing collection of digital recipes.
+  [🔗 Files](tandoor/docker-compose.yml)
+  `“Commons Clause” License Condition v1.0`
+  `Python`
 
 ## Resource Planning
 
