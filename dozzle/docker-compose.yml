@@ -1,0 +1,36 @@
+# docker-compose.yml
+
+services:
+  app:
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    image: docker.io/amir20/dozzle:${DOZZLE_VERSION:-v8}
+    networks:
+      - traefik_default
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+      traefik.docker.network: traefik_default
+      traefik.enable: true
+      traefik.http.routers.dozzle.entrypoints: websecure
+      traefik.http.routers.dozzle.rule: Host(`${SERVICE_NAME_OVERRIDE:-dozzle}.${DOMAIN_NAME:-local}`)
+      traefik.http.routers.dozzle.service: dozzle
+      traefik.http.routers.dozzle.tls: true
+      traefik.http.routers.dozzle.tls.certresolver: ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.services.dozzle.loadbalancer.server.port: 8080
+      local.yacht.port.8080: WebUI
+    restart: unless-stopped
+    healthcheck:
+      test:
+        - CMD
+        - /dozzle
+        - healthcheck
+      interval: 3s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+networks:
+  traefik_default:
+    external: true
+x-dockge:
+  urls:
+    - https://${SERVICE_NAME_OVERRIDE:-dozzle}.${DOMAIN_NAME:-local}
