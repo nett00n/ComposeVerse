@@ -18,6 +18,18 @@ Here are located my attempts to deploy an kind of services.
     urls:
       - https://${SERVICE_NAME_OVERRIDE:-servicename}.${DOMAIN_NAME:-local}
   ```
+
+## Automation
+
+Automation software designed to reduce human intervention in processes.
+
+Related: Internet of Things (IoT), Software Development - Continuous Integration & Deployment
+
+- [headphones](https://github.com/rembo10/headphones) - Automated music downloader for NZB and Torrent, written in Python. It supports SABnzbd, NZBget, Transmission, µTorrent, Deluge and Blackhole.
+  [🔗 Files](headphones/docker-compose.yml)
+  `GPL-3.0`
+  `Python`
+
 ## DNS
 
 DNS servers and management tools with advertisement blocking functionality, primarily aimed at home or small networks.
@@ -97,7 +109,7 @@ Software and tools to help with resource and supply planning, including enterpri
 Related: Money, Budgeting & Management, Inventory Management
 
 - [grocy](https://grocy.info/) - ERP beyond your fridge - grocy is a web-based self-hosted groceries & household management solution for your home. (Demo, Source Code)
-  [🔗 Files](groc/docker-compose.yml)
+  [🔗 Files](grocy/docker-compose.yml)
   `MIT`
   `PHP`
 
