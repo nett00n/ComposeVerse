@@ -15,7 +15,7 @@ services:
       traefik.http.routers.it-tools.rule: Host(`${SERVICE_NAME_OVERRIDE:-it-tools}.${DOMAIN_NAME:-local}`)
       traefik.http.routers.it-tools.service: it-tools
       traefik.http.routers.it-tools.tls: true
-      traefik.http.routers.it-tools.tls.certresolver: ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.routers.it-tools.tls.certresolver: ${LETSENCRYPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
       traefik.http.services.it-tools.loadbalancer.server.port: 80
     logging:
       driver: json-file

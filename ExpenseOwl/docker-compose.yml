@@ -17,7 +17,7 @@ services:
       traefik.http.routers.expenseowl.rule: Host(`${SERVICE_NAME_OVERRIDE:-expenseowl}.${DOMAIN_NAME:-local}`)
       traefik.http.routers.expenseowl.service: expenseowl
       traefik.http.routers.expenseowl.tls: true
-      traefik.http.routers.expenseowl.tls.certresolver: ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.routers.expenseowl.tls.certresolver: ${LETSENCRYPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
       traefik.http.services.expenseowl.loadbalancer.server.port: 8080
 networks:
   traefik_default:

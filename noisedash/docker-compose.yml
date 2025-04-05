@@ -16,7 +16,7 @@ services:
       traefik.http.routers.noisedash.rule: Host(`${SERVICE_NAME_OVERRIDE:-noisedash}.${DOMAIN_NAME:-local}`)
       traefik.http.routers.noisedash.service: noisedash
       traefik.http.routers.noisedash.tls: true
-      traefik.http.routers.noisedash.tls.certresolver: ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.routers.noisedash.tls.certresolver: ${LETSENCRYPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
       traefik.http.services.noisedash.loadbalancer.server.port: 1432
     networks:
       - traefik_default

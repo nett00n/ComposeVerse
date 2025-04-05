@@ -19,7 +19,7 @@ services:
       traefik.http.routers.beszel.rule: Host(`${SERVICE_NAME_OVERRIDE:-beszel}.${DOMAIN_NAME:-local}`)
       traefik.http.routers.beszel.service: beszel
       traefik.http.routers.beszel.tls: true
-      traefik.http.routers.beszel.tls.certresolver: ${LETSENCRPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
+      traefik.http.routers.beszel.tls.certresolver: ${LETSENCRYPT_CERTRESOLVER:-letsencrypt-cloudflare-dns-challenge}
       traefik.http.services.beszel.loadbalancer.server.port: 8090
       local.yacht.port.8090: WebUI
     dns:
