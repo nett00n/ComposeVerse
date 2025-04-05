@@ -1,0 +1,18 @@
+# docker-compose.yml
+
+---
+services:
+  app:
+    image: docker.io/henrygd/beszel-agent:0
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      PORT: 45876
+      KEY: ${AGENT_KEY}
+    ports:
+      - 45876:45876
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+    networks:
+      - default
