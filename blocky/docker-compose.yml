@@ -1,0 +1,36 @@
+# docker-compose.yml
+
+networks:
+  traefik_default:
+    external: true
+services:
+  app:
+    environment:
+      - TZ=${TZ:-etc/UTC}
+    image: docker.io/spx01/blocky${BLOCKY_VERSION:-main}
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+      traefik.enable: true
+      traefik.http.routers.blocky.entrypoints: websecure
+      traefik.http.routers.blocky.rule: Host(`${SERVICE_NAME_OVERRIDE:-blocky}.${DOMAIN_NAME:-local}`)
+      traefik.http.routers.blocky.service: blocky
+      traefik.http.routers.blocky.tls: true
+      traefik.http.routers.blocky.tls.certresolver: letsencrypt-cloudflare-dns-challenge
+      traefik.http.services.blocky.loadbalancer.server.port: 80
+    networks:
+      - traefik_default
+    ports:
+      - ${PUBLIC_PORT:-127.0.0.1}:53:53/tcp
+      - ${PUBLIC_PORT:-127.0.0.1}:53:53/udp
+    restart: always
+    volumes:
+      - ${GLOBAL_STACKS_FOLDER:-/Stacks}/blocky/config.yml:/app/config.yml
+    dns:
+      - 208.67.222.222 # OpenDNS
+      - 208.67.220.220 # OpenDNS
+      - 1.1.1.1 # Cloudflare
+      - 9.9.9.9 # Quad9
+      - 8.8.8.8 # Google
+x-dockge:
+  urls:
+    - https://${SERVICE_NAME_OVERRIDE:-blocky}.${DOMAIN_NAME:-local}

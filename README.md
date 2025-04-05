@@ -17,6 +17,14 @@ Here are located my attempts to deploy an kind of services.
     urls:
       - https://${SERVICE_NAME_OVERRIDE:-servicename}.${DOMAIN_NAME:-local}
   ```
+## DNS
+
+DNS servers and management tools with advertisement blocking functionality, primarily aimed at home or small networks.
+
+- [blocky](https://github.com/0xERR0R/blocky) - Fast and lightweight DNS proxy (like Pi-hole) as ad-blocker for local network with many features.
+  [🔗 Files](blocky/docker-compose.yml)
+  `Apache-2.0`
+  `Go/Docker`
 
 ## Docker Management
 
