@@ -1,0 +1,42 @@
+upstreams:
+  strategy: strict
+  groups:
+    default:
+      - 208.67.222.222 # OpenDNS
+      - 208.67.220.220 # OpenDNS
+      - 1.1.1.1 # Cloudflare
+      - 9.9.9.9 # Quad9
+      - 8.8.8.8 # Google
+    laptop*:
+      - 123.123.123.123
+    10.43.8.67/28:
+      - 1.1.1.1
+      - 9.9.9.9
+blocking:
+  blackLists:
+    ads:
+      - https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt
+      - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+      - |
+        # inline definition with YAML literal block scalar style
+        someadsdomain.com
+        anotheradsdomain.com
+        # this is a regex
+        /^banners?[_.-]/
+    special:
+      - https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews/hosts
+  whiteLists:
+    ads:
+      - whitelist.txt
+      - |
+        # inline definition with YAML literal block scalar style
+        whitelistdomain.com
+customDNS:
+  customTTL: 1h
+  filterUnmappedTypes: true
+  rewrite:
+    home: lan
+    replace-me.com: with-this.com
+  mapping:
+    printer.lan: 192.168.178.3
+    otherdevice.lan: 192.168.178.15,2001:0db8:85a3:08d3:1319:8a2e:0370:7344
