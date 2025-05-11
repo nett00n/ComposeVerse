@@ -7,7 +7,7 @@ services:
   app:
     environment:
       - TZ=${TZ:-etc/UTC}
-    image: docker.io/spx01/blocky${BLOCKY_VERSION:-main}
+    image: docker.io/spx01/blocky:${BLOCKY_VERSION:-main}
     labels:
       com.centurylinklabs.watchtower.enable: "true"
       traefik.enable: true
