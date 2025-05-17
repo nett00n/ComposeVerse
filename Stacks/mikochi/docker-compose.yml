@@ -15,7 +15,7 @@ services:
         NO_AUTH: ${NO_AUTH:-false}
         PASSWORD: ${PASSWORD:-pass}
         USERNAME: ${USERNAME:-root}
-    image: zer0tonin/mikochi:${MIKOCHI_VERSION:-1.8.1}
+    image: docker.io/zer0tonin/mikochi:${MIKOCHI_VERSION:-1.8.1}
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.docker.network=traefik_default"
