@@ -1,0 +1,32 @@
+services:
+  app:
+    ports:
+        - 8080:8080
+    volumes:
+        - ${GLOBAL_DATA_FOLDER:-/Data}:/data
+    environment:
+        CERT_CA: ${CERT_CA}
+        CERT_KEY: ${CERT_KEY}
+        DATA_DIR: ${DATA_DIR:-/data}
+        FRONTEND_FILES: ${FRONTEND_FILES:-./static}
+        GZIP: ${GZIP:-false}
+        HOST: ${HOST:-0.0.0.0:8080}
+        JWT_SECRET: ${JWT_SECRET:-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA} # https://it-tools.tech/token-generator?length=32
+        NO_AUTH: ${NO_AUTH:-false}
+        PASSWORD: ${PASSWORD:-pass}
+        USERNAME: ${USERNAME:-root}
+    image: zer0tonin/mikochi:${MIKOCHI_VERSION:-1.8.1}
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      - "traefik.docker.network=traefik_default"
+      - "traefik.enable=true"
+      - "traefik.http.routers.mikochi.entrypoints=websecure"
+      - "traefik.http.routers.mikochi.rule=Host(`${SERVICE_NAME_OVERRIDE:-mikochi}.${DOMAIN_NAME:-local}`)"
+      - "traefik.http.routers.mikochi.tls=true"
+      - "traefik.http.routers.mikochi.tls.certresolver=letsencrypt-cloudflare-dns-challenge"
+      - "traefik.http.services.mikochi.loadbalancer.server.port=8080"
+    networks:
+      - traefik_default
+networks:
+  traefik_default:
+    external: true
